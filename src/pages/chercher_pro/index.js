@@ -1,14 +1,12 @@
 // ** Next Import
-import Link from 'next/link'
 import TimelineDot from '@mui/lab/TimelineDot'
 // ** MUI Components
 import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
-import Card from '@mui/material/Card'
-import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
+import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
 import Pro1 from '../../../public/asstes/LandingPage/avatar01.png'
 import Pro2 from '../../../public/asstes/LandingPage/avatar02.png'
 import Pro3 from '../../../public/asstes/LandingPage/avatar03.png'
@@ -16,19 +14,15 @@ import Pro4 from '../../../public/asstes/LandingPage/avatar04.png'
 import Pro5 from '../../../public/asstes/LandingPage/avatar05.png'
 import Pro6 from '../../../public/asstes/LandingPage/avatar06.png'
 // ** Icon Imports
-import Icon from 'src/@core/components/icon'
-import axios from 'axios'
 // ** Custom Components Imports
-import CustomChip from 'src/@core/components/mui/chip'
-import OptionsMenu from 'src/@core/components/option-menu'
-import { useState } from 'react'
+import { CardHeader } from '@mui/material'
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
-import { CardHeader } from '@mui/material'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 const ChercherPro = () => {
   return (
     <Grid container spacing={6}>

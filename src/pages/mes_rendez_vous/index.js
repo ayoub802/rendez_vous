@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 
 // ** Next Import
 import { useRouter } from 'next/router'
-import { MdStars } from 'react-icons/md'
+import { FiClock } from 'react-icons/fi'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
@@ -15,19 +15,15 @@ import Grid from '@mui/material/Grid'
 import Tab from '@mui/material/Tab'
 import useMediaQuery from '@mui/material/useMediaQuery'
 // import MuiTabList from '@mui/lab/TabList'
+import { BiPencil } from 'react-icons/bi'
 
 // ** Icon Imports
 import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
 import { Card } from '@mui/material'
-import Icon from 'src/@core/components/icon'
-import TabConnections from 'src/views/dashboard/account-settings/TabConnections'
-import TabNotifications from 'src/views/dashboard/account-settings/TabNotifications'
-import TabSecurity from 'src/views/dashboard/account-settings/TabSecurity'
-import TabAccount from './TabAccount'
-import Tabavis from './TabAvis'
-import AppCalendar from './TabCalandar'
+import Historique from './historique'
+import Rendez from './rendez'
 // ** Demo Tabs Imports
 // import TabAccount from 'src/views/pages/account-settings/TabAccount'
 // import TabBilling from 'src/views/pages/account-settings/TabBilling'
@@ -53,7 +49,7 @@ import AppCalendar from './TabCalandar'
 //   }
 // }))
 
-const AccountSettings = () => {
+const RendezVous = () => {
   // ** State
 
   const tab = [
@@ -92,25 +88,17 @@ const AccountSettings = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tab])
 
-  const tabContentList = {
-    account: <TabAccount />,
-    security: <TabSecurity />,
-    connections: <TabConnections />,
-    notifications: <TabNotifications />
-    // billing: <TabBilling apiPricingPlanData={apiPricingPlanData} />
-  }
-
   return (
     <Grid container spacing={6} sx={{ ml: -2, display: 'block' }}>
-      <Card>
-        <Box
-          sx={{
-            backgroundColor: '#fff',
-            width: '100%',
-            borderRadius: 2
-          }}
-        >
-          <TabContext value={value}>
+      <TabContext value={value}>
+        <Card>
+          <Box
+            sx={{
+              backgroundColor: '#fff',
+              width: '100%',
+              borderRadius: 2
+            }}
+          >
             <TabList
               onChange={handleChange}
               aria-label='simple tabs example'
@@ -124,8 +112,8 @@ const AccountSettings = () => {
             >
               <Tab
                 value='1'
-                label='FICHE PRO'
-                icon={<Icon icon='mdi:user' />}
+                label='MES RENDEZ-VOUS'
+                icon={<FiClock size={20} />}
                 sx={{
                   display: 'flex',
                   flexDirection: 'row',
@@ -141,25 +129,8 @@ const AccountSettings = () => {
               />
               <Tab
                 value='2'
-                label='Calendrier'
-                icon={<Icon icon='mdi:calendar' />}
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  gap: 2,
-                  alignItems: 'center',
-                  pr: 10,
-                  '& .MuiTab-iconWrapper': { marginBlockEnd: 0 },
-                  '&.Mui-selected': {
-                    color: '#1273D1',
-                    borderColor: '#1273D1'
-                  }
-                }}
-              />
-              <Tab
-                value='3'
-                label='AVIS'
-                icon={<MdStars size={25} />}
+                label='Historique'
+                icon={<BiPencil size={20} />}
                 sx={{
                   display: 'flex',
                   flexDirection: 'row',
@@ -174,63 +145,20 @@ const AccountSettings = () => {
                 }}
               />
             </TabList>
-            <TabPanel value='1'>
-              <TabAccount />
-            </TabPanel>
-            {/* <TabPanel value='2'>
-              <Tabavis />
-            </TabPanel> */}
-            {/* <TabPanel value='3' sx={{ p: 0, pt: 15, backgroundColor: '#f7f7f9' }}> */}
-            {/* <Tabavis /> */}
-            {/* </TabPanel> */}
-          </TabContext>
-        </Box>
-      </Card>
-      {value == 2 && (
-        <Box
-          sx={{
-            mt: 5
-          }}
-        >
-          <AppCalendar />
-        </Box>
-      )}
-      {value == 3 && (
-        <Box
-          sx={{
-            mt: 5
-          }}
-        >
-          <Tabavis />
-        </Box>
-      )}
+          </Box>
+        </Card>
+        <TabPanel value='1'>
+          <Rendez />
+        </TabPanel>
+        <TabPanel value='2'>
+          <Historique />
+        </TabPanel>
+        <TabPanel value='3' sx={{ p: 0, pt: 15, backgroundColor: '#f7f7f9' }}>
+          {/* <Tabavis /> */}
+        </TabPanel>
+      </TabContext>
     </Grid>
   )
 }
 
-export default AccountSettings
-
-// export const getStaticPaths = () => {
-//   return {
-//     paths: [
-//       { params: { tab: 'account' } },
-//       { params: { tab: 'security' } },
-//       { params: { tab: 'billing' } },
-//       { params: { tab: 'notifications' } },
-//       { params: { tab: 'connections' } }
-//     ],
-//     fallback: false
-//   }
-// }
-
-// export const getStaticProps = async ({ params }) => {
-//   const res = await axios.get('/pages/pricing')
-//   const data = res.data
-
-//   return {
-//     props: {
-//       tab: params?.tab,
-//       apiPricingPlanData: data.pricingPlans
-//     }
-//   }
-// }
+export default RendezVous

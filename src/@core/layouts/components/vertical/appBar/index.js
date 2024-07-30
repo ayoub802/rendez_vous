@@ -1,8 +1,8 @@
 // ** MUI Imports
-import { styled, useTheme } from '@mui/material/styles'
-import useScrollTrigger from '@mui/material/useScrollTrigger'
 import MuiAppBar from '@mui/material/AppBar'
 import MuiToolbar from '@mui/material/Toolbar'
+import { styled, useTheme } from '@mui/material/styles'
+import useScrollTrigger from '@mui/material/useScrollTrigger'
 
 // ** Util Import
 import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'

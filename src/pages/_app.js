@@ -22,18 +22,17 @@ import 'src/@fake-db'
 import { Toaster } from 'react-hot-toast'
 
 // ** Component Imports
-import UserLayout from 'src/layouts/UserLayout'
-import AclGuard from 'src/@core/components/auth/AclGuard'
-import ThemeComponent from 'src/@core/theme/ThemeComponent'
 import AuthGuard from 'src/@core/components/auth/AuthGuard'
 import GuestGuard from 'src/@core/components/auth/GuestGuard'
+import ThemeComponent from 'src/@core/theme/ThemeComponent'
+import UserLayout from 'src/layouts/UserLayout'
 
 // ** Spinner Import
 import Spinner from 'src/@core/components/spinner'
 
 // ** Contexts
-import { AuthProvider } from 'src/context/AuthContext'
 import { SettingsConsumer, SettingsProvider } from 'src/@core/context/settingsContext'
+import { AuthProvider } from 'src/context/AuthContext'
 
 // ** Styled Components
 import ReactHotToast from 'src/@core/styles/libs/react-hot-toast'
@@ -44,19 +43,19 @@ import { store } from 'src/store'
 
 // ** Prismjs Styles
 import 'prismjs'
-import 'prismjs/themes/prism-tomorrow.css'
 import 'prismjs/components/prism-jsx'
 import 'prismjs/components/prism-tsx'
+import 'prismjs/themes/prism-tomorrow.css'
 
 // ** React Perfect Scrollbar Style
 import 'react-perfect-scrollbar/dist/css/styles.css'
 import 'src/iconify-bundle/icons-bundle-react'
 
 // ** Global css styles
-import '../../styles/globals.css'
 import { useEffect, useState } from 'react'
-import LandingPage from '.'
 import { Provider } from 'react-redux'
+import AclGuard from 'src/@core/components/auth/AclGuard'
+import '../../styles/globals.css'
 
 const clientSideEmotionCache = createEmotionCache()
 

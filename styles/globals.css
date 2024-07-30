@@ -45,10 +45,10 @@ code[class*='language-'] {
   border-top-right-radius: 1200px;
 }
 .half-circle.avis {
-  height: 135px;
-  width: 270px;
-  border-top-left-radius: 270px;
-  border-top-right-radius: 270px;
+  height: 150px;
+  width: 320px;
+  border-top-left-radius: 300px;
+  border-top-right-radius: 300px;
 }
 
 .half-circle-medium {

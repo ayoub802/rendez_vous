@@ -30,11 +30,7 @@ import {
 
 // ** CalendarColors
 const calendarsColor = {
-  'Aujourd’hui': 'error',
-  'A venir': 'primary',
-  Business: 'warning',
-  Personnel: 'success',
-  Médical: 'info'
+  Disponible: 'success'
 }
 
 const AppCalendar = () => {

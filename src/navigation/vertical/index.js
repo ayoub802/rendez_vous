@@ -1,8 +1,7 @@
-import { MdOutlineHome } from 'react-icons/md'
 import { FaRegCalendar } from 'react-icons/fa'
+import { FiClock, FiUser } from 'react-icons/fi'
 import { IoSearchSharp } from 'react-icons/io5'
-import { FiClock } from 'react-icons/fi'
-import { FiUser } from 'react-icons/fi'
+import { MdOutlineHome } from 'react-icons/md'
 
 const navigation = () => {
   return [
@@ -40,12 +39,12 @@ const navigation = () => {
     },
     {
       title: 'Mes rendez-vous',
-      path: '/homes',
+      path: '/mes_rendez_vous',
       icon: <FiClock size={20} />
     },
     {
       title: 'Compte',
-      path: '/homes',
+      path: '/compte',
       icon: <FiUser size={20} />
     }
   ]
