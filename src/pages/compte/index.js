@@ -3,28 +3,39 @@
 // ** Demo Components Imports
 
 // ** React Imports
-import { useEffect, useState } from 'react'
+import { forwardRef, useEffect, useState } from 'react'
+import DatePicker from 'react-datepicker'
 
 // ** Next Import
 import { useRouter } from 'next/router'
-import { AiOutlineSearch } from 'react-icons/ai'
-import { IoMdNotificationsOutline } from 'react-icons/io'
-import { MdOutlineEuroSymbol, MdOutlineLockOpen } from 'react-icons/md'
-
 // ** MUI Imports
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
-import Tab from '@mui/material/Tab'
 import useMediaQuery from '@mui/material/useMediaQuery'
 // import MuiTabList from '@mui/lab/TabList'
 
 // ** Icon Imports
-import TabContext from '@mui/lab/TabContext'
-import TabList from '@mui/lab/TabList'
-import TabPanel from '@mui/lab/TabPanel'
-import { Card } from '@mui/material'
+import { TabContext, TabList, TabPanel } from '@mui/lab'
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  FormControl,
+  Grid,
+  InputAdornment,
+  InputLabel,
+  MenuItem,
+  Select,
+  Tab,
+  TextField
+} from '@mui/material'
+import { Box } from '@mui/system'
+import { AiOutlineSearch } from 'react-icons/ai'
+import { IoMdNotificationsOutline } from 'react-icons/io'
+import { MdOutlineEuroSymbol, MdOutlineLockOpen } from 'react-icons/md'
+import { TiArrowSortedDown } from 'react-icons/ti'
+import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
 import TabAccount from './TabAccount'
 import TabNotification from './TabNotification'
+import TabPaiment from './TabPaiment'
 import TabSecurite from './TabSecurite'
 
 const ContactList = () => {
@@ -54,6 +65,7 @@ const ContactList = () => {
   const router = useRouter()
   const hideText = useMediaQuery(theme => theme.breakpoints.down('md'))
   const [value, setValue] = useState('1')
+  const [date, setDate] = useState(new Date())
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
@@ -65,9 +77,30 @@ const ContactList = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tab])
+  const popperPlacement = 'bottom-start'
+  const PickersComponent = forwardRef(({ ...props }, ref) => {
+    // ** Props
+    const { label, readOnly } = props
 
+    return (
+      <TextField
+        inputRef={ref}
+        {...props}
+        label={label}
+        sx={{ width: '100%' }}
+        {...(readOnly && { inputProps: { readOnly: true } })}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position='end'>
+              <TiArrowSortedDown />
+            </InputAdornment>
+          )
+        }}
+      />
+    )
+  })
   return (
-    <Grid container spacing={6} sx={{ ml: -2, display: 'block' }}>
+    <Grid container spacing={6} sx={{ ml: -2, display: 'block', mt: 1 }}>
       <Card>
         <Box
           sx={{
@@ -166,9 +199,51 @@ const ContactList = () => {
             <TabPanel value='3' sx={{ p: 0, pt: 15, backgroundColor: '#f7f7f9' }}>
               <TabNotification />
             </TabPanel>
+            <TabPanel value='4'>
+              <CardHeader title='Filters' sx={{ pb: 4, '& .MuiCardHeader-title': { letterSpacing: '.15px' } }} />
+              <CardContent>
+                <Grid container spacing={6}>
+                  <Grid item sm={6} xs={12}>
+                    <FormControl fullWidth>
+                      <InputLabel id='role-select'>Métier</InputLabel>
+                      <Select
+                        fullWidth
+                        id='select-role'
+                        label='Métier'
+                        labelId='role-select'
+                        inputProps={{ placeholder: 'Métier' }}
+                      >
+                        <MenuItem value='admin'>Admin</MenuItem>
+                        <MenuItem value='author'>Author</MenuItem>
+                        <MenuItem value='editor'>Editor</MenuItem>
+                        <MenuItem value='maintainer'>Maintainer</MenuItem>
+                        <MenuItem value='subscriber'>Subscriber</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Grid>
+
+                  <Grid item sm={6} xs={12}>
+                    <DatePickerWrapper>
+                      <Box sx={{ mb: 6 }}>
+                        <DatePicker
+                          selectsStart
+                          id='event-start-date'
+                          onChange={date => setDate(date)}
+                          selected={date}
+                          popperPlacement={popperPlacement}
+                          customInput={<PickersComponent label='Date' registername='date' />}
+                        />
+                      </Box>
+                    </DatePickerWrapper>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </TabPanel>
           </TabContext>
         </Box>
       </Card>
+
+      {value == 4 && <TabPaiment />}
     </Grid>
   )
 }

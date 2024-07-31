@@ -23,6 +23,31 @@ import Select from '@mui/material/Select'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+
+// ** MUI Imports
+import Pagination from '@mui/material/Pagination'
+
+const PaginationSimple = () => {
+  const primary = '#000000'
+  return (
+    <div className='demo-space-y flex justify-center items-center mt-3'>
+      <Pagination
+        count={10}
+        color='primary'
+        sx={{
+          '& .MuiPagination-ul': {
+            '& .Mui-selected': {
+              backgroundColor: '#1273D1'
+            },
+            '&:hover .Mui-selected': {
+              backgroundColor: '#1273D1'
+            }
+          }
+        }}
+      />
+    </div>
+  )
+}
 const ChercherPro = () => {
   return (
     <Grid container spacing={6}>
@@ -31,6 +56,9 @@ const ChercherPro = () => {
       </Grid>
       <Grid item xs={12}>
         <ChercherProItem />
+      </Grid>
+      <Grid item xs={12}>
+        <PaginationSimple />
       </Grid>
     </Grid>
   )
