@@ -38,6 +38,7 @@ import CustomAvatar from 'src/@core/components/mui/avatar'
 import CustomChip from 'src/@core/components/mui/chip'
 import OptionsMenu from 'src/@core/components/option-menu'
 import { DataUser } from 'src/store/apps/user'
+import { Checkbox } from '@mui/material'
 
 // ** Styled component for the link in the dataTable
 const LinkStyled = styled(Link)(({ theme }) => ({
@@ -82,7 +83,9 @@ const defaultColumns = [
     field: 'id',
     minWidth: 10,
     headerName: 'Référence',
-    renderCell: ({ row }) => <LinkStyled href={`/apps/invoice/preview/${row.id}`}>{`#${row.id}`}</LinkStyled>
+    renderCell: ({ row }) => (
+      <LinkStyled href={`/apps/invoice/preview/${row.id}`} className='!text-[#1273D1]'>{`#${row.id}`}</LinkStyled>
+    )
   },
   {
     flex: 0.25,
@@ -176,6 +179,12 @@ const TabPaiment = () => {
   const handleStatusValue = e => {
     setStatusValue(e.target.value)
   }
+  const CustomCheckbox = styled(Checkbox)(({ theme }) => ({
+    color: '#1273D1', // Default color
+    '&.Mui-checked': {
+      color: '#1273D1' // Color when checked
+    }
+  }))
 
   const columns = [
     ...defaultColumns,
@@ -237,9 +246,30 @@ const TabPaiment = () => {
           }}
         >
           <FormControl size='small'>
-            <InputLabel id='invoice-status-select'>Action</InputLabel>
+            <InputLabel
+              id='invoice-status-select'
+              sx={{
+                color: 'grey', // Default label color
+                '&.Mui-focused': {
+                  color: '#1273D1' // Label color on focus
+                },
+                '&.Mui-error': {
+                  color: 'red' // Label color on error
+                }
+              }}
+            >
+              Action
+            </InputLabel>
             <Select
-              sx={{ pr: 4 }}
+              sx={{
+                pr: 4,
+                '&:hover:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error) .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#1273D1'
+                },
+                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#1273D1'
+                }
+              }}
               value={statusValue}
               label='Action'
               onChange={handleStatusValue}
@@ -270,6 +300,35 @@ const TabPaiment = () => {
               value={value}
               placeholder='Chercher un paiement'
               onChange={e => handleFilter(e.target.value)}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'grey' // Default border color
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'blue' // Border color on hover
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#1273D1' // Border color on focus
+                  },
+                  '& .MuiInputLabel-root': {
+                    color: 'grey' // Default label color
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: '#1273D1' // Label color on focus
+                  }
+                }
+              }}
+              InputLabelProps={{
+                sx: {
+                  '&.Mui-focused': {
+                    color: '#1273D1' // Label color on focus
+                  },
+                  '&.Mui-focused.Mui-error': {
+                    color: 'red' // Label color on focus
+                  }
+                }
+              }}
             />
             <FormControl size='small'>
               <Button
@@ -292,6 +351,11 @@ const TabPaiment = () => {
         pagination
         rows={DataUser}
         checkboxSelection
+        sx={{
+          '& .MuiCheckbox-root.MuiCheckbox-root': {
+            color: '#1273D1'
+          }
+        }}
         columns={columns}
         disableRowSelectionOnClick
         pageSizeOptions={[10, 25, 50]}

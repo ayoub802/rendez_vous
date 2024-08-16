@@ -25,7 +25,42 @@ import Icon from 'src/@core/components/icon'
 import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
 
 const CustomInput = forwardRef(({ ...props }, ref) => {
-  return <TextField inputRef={ref} label='Payment Date' {...props} />
+  return (
+    <TextField
+      inputRef={ref}
+      label='Payment Date'
+      {...props}
+      sx={{
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            borderColor: 'grey' // Default border color
+          },
+          '&:hover fieldset': {
+            borderColor: 'blue' // Border color on hover
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: '#1273D1' // Border color on focus
+          },
+          '& .MuiInputLabel-root': {
+            color: 'grey' // Default label color
+          },
+          '& .MuiInputLabel-root.Mui-focused': {
+            color: '#1273D1' // Label color on focus
+          }
+        }
+      }}
+      InputLabelProps={{
+        sx: {
+          '&.Mui-focused': {
+            color: '#1273D1' // Label color on focus
+          },
+          '&.Mui-focused.Mui-error': {
+            color: 'red' // Label color on focus
+          }
+        }
+      }}
+    />
+  )
 })
 
 const Header = styled(Box)(({ theme }) => ({
@@ -63,6 +98,35 @@ const EditInvoiceDrawer = ({ open, toggle }) => {
             label='Invoice Balance'
             InputProps={{ disabled: true }}
             defaultValue='5000.00'
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: 'grey' // Default border color
+                },
+                '&:hover fieldset': {
+                  borderColor: 'blue' // Border color on hover
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: '#1273D1' // Border color on focus
+                },
+                '& .MuiInputLabel-root': {
+                  color: 'grey' // Default label color
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#1273D1' // Label color on focus
+                }
+              }
+            }}
+            InputLabelProps={{
+              sx: {
+                '&.Mui-focused': {
+                  color: '#1273D1' // Label color on focus
+                },
+                '&.Mui-focused.Mui-error': {
+                  color: 'red' // Label color on focus
+                }
+              }
+            }}
           />
         </Box>
         <Box sx={{ mb: 6 }}>
@@ -72,6 +136,35 @@ const EditInvoiceDrawer = ({ open, toggle }) => {
             label='Payment Amount'
             InputProps={{
               startAdornment: <InputAdornment position='start'>$</InputAdornment>
+            }}
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: 'grey' // Default border color
+                },
+                '&:hover fieldset': {
+                  borderColor: 'blue' // Border color on hover
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: '#1273D1' // Border color on focus
+                },
+                '& .MuiInputLabel-root': {
+                  color: 'grey' // Default label color
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#1273D1' // Label color on focus
+                }
+              }
+            }}
+            InputLabelProps={{
+              sx: {
+                '&.Mui-focused': {
+                  color: '#1273D1' // Label color on focus
+                },
+                '&.Mui-focused.Mui-error': {
+                  color: 'red' // Label color on focus
+                }
+              }
             }}
           />
         </Box>
@@ -87,12 +180,33 @@ const EditInvoiceDrawer = ({ open, toggle }) => {
         </Box>
         <Box sx={{ mb: 6 }}>
           <FormControl fullWidth>
-            <InputLabel htmlFor='payment-method'>Payment Method</InputLabel>
+            <InputLabel
+              htmlFor='payment-method'
+              sx={{
+                color: 'grey', // Default label color
+                '&.Mui-focused': {
+                  color: '#1273D1' // Label color on focus
+                },
+                '&.Mui-error': {
+                  color: 'red' // Label color on error
+                }
+              }}
+            >
+              Payment Method
+            </InputLabel>
             <Select
               label='Payment Method'
               labelId='payment-method'
               id='payment-method-select'
               defaultValue='select-method'
+              sx={{
+                '&:hover:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error) .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#1273D1'
+                },
+                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#1273D1'
+                }
+              }}
             >
               <MenuItem value='select-method' disabled>
                 Select Payment Method
@@ -106,7 +220,42 @@ const EditInvoiceDrawer = ({ open, toggle }) => {
           </FormControl>
         </Box>
         <Box sx={{ mb: 6 }}>
-          <TextField rows={6} multiline fullWidth label='Internal Payment Note' placeholder='Internal Payment Note' />
+          <TextField
+            rows={6}
+            multiline
+            fullWidth
+            label='Internal Payment Note'
+            placeholder='Internal Payment Note'
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: 'grey' // Default border color
+                },
+                '&:hover fieldset': {
+                  borderColor: 'blue' // Border color on hover
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: '#1273D1' // Border color on focus
+                },
+                '& .MuiInputLabel-root': {
+                  color: 'grey' // Default label color
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#1273D1' // Label color on focus
+                }
+              }
+            }}
+            InputLabelProps={{
+              sx: {
+                '&.Mui-focused': {
+                  color: '#1273D1' // Label color on focus
+                },
+                '&.Mui-focused.Mui-error': {
+                  color: 'red' // Label color on focus
+                }
+              }
+            }}
+          />
         </Box>
 
         <div>

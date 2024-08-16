@@ -283,6 +283,41 @@ const Register = () => {
                     }
                   }
                 }}
+                label='Numéro de telephone'
+                placeholder='Numéro de telephone'
+              />
+              <TextField
+                fullWidth
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'grey' // Default border color
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'blue' // Border color on hover
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#1273D1' // Border color on focus
+                    },
+                    '& .MuiInputLabel-root': {
+                      color: 'grey' // Default label color
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#1273D1' // Label color on focus
+                    }
+                  },
+                  mb: 4
+                }}
+                InputLabelProps={{
+                  sx: {
+                    '&.Mui-focused': {
+                      color: '#1273D1' // Label color on focus
+                    },
+                    '&.Mui-focused.Mui-error': {
+                      color: 'red' // Label color on focus
+                    }
+                  }
+                }}
                 label='Email'
                 placeholder='Email'
               />
@@ -415,14 +450,6 @@ const Register = () => {
                 </IconButton>
                 <IconButton href='/' component={Link} sx={{ color: '#1da1f2' }} onClick={e => e.preventDefault()}>
                   <Icon icon='mdi:twitter' />
-                </IconButton>
-                <IconButton
-                  href='/'
-                  component={Link}
-                  onClick={e => e.preventDefault()}
-                  sx={{ color: theme => (theme.palette.mode === 'light' ? '#272727' : 'grey.300') }}
-                >
-                  <Icon icon='mdi:github' />
                 </IconButton>
                 <IconButton href='/' component={Link} sx={{ color: '#db4437' }} onClick={e => e.preventDefault()}>
                   <Icon icon='mdi:google' />

@@ -74,6 +74,10 @@ if (themeConfig.routingLoader) {
   })
 }
 const Guard = ({ children, authGuard, guestGuard }) => {
+  const router = useRouter()
+  if (router.pathname === '/') {
+    return <>{children}</>
+  }
   if (guestGuard) {
     return <GuestGuard fallback={<Spinner />}>{children}</GuestGuard>
   } else if (!guestGuard && !authGuard) {
@@ -86,31 +90,33 @@ const Guard = ({ children, authGuard, guestGuard }) => {
 // ** Configure JSS & ClassName
 const App = props => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
-  const [hasVisitedInitialPage, setHasVisitedInitialPage] = useState(false)
+  // const [hasVisitedInitialPage, setHasVisitedInitialPage] = useState(false)
   const { user } = useAuth()
   // Variables
 
   const router = useRouter()
   const contentHeightFixed = Component.contentHeightFixed ?? false
-  useEffect(() => {
-    if (localStorage.getItem('hasVisitedInitialPage')) {
-      setHasVisitedInitialPage(true)
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (localStorage.getItem('hasVisitedInitialPage')) {
+  //     setHasVisitedInitialPage(true)
+  //   }
+  // }, [])
 
-  useEffect(() => {
-    const hasVisited = localStorage.getItem('hasVisitedInitialPage')
-    if (!hasVisited) {
-      // setHasVisitedInitialPage(true)
-      if (router.pathname !== '/') {
-        router.replace('/')
-      }
-    }
-  }, [router])
+  // useEffect(() => {
+  //   const hasVisited = localStorage.getItem('hasVisitedInitialPage')
+  //   if (!hasVisited) {
+  //     // setHasVisitedInitialPage(true)
+  //     if (router.pathname !== '/') {
+  //       router.replace('/')
+  //     }
+  //   }
+  // }, [router])
 
-  console.log('Has Visited => ', user)
+  console.log('Has Visited => ', Component.getLayout)
   const getLayout =
-    Component.getLayout ?? (page => <UserLayout contentHeightFixed={contentHeightFixed}>{page}</UserLayout>)
+    router.pathname === '/'
+      ? page => <>{page}</>
+      : Component.getLayout ?? (page => <UserLayout contentHeightFixed={contentHeightFixed}>{page}</UserLayout>)
   // const getLayout = page => {
   //   // Example role-based layout selection
   //   if (user?.role === 'admin') {
@@ -123,10 +129,10 @@ const App = props => {
   const authGuard = Component.authGuard ?? true
   const guestGuard = Component.guestGuard ?? false
   const aclAbilities = Component.acl ?? defaultACLObj
-  const handleVisitInitialPage = () => {
-    localStorage.setItem('hasVisitedInitialPage', 'true')
-    setHasVisitedInitialPage(true)
-  }
+  // const handleVisitInitialPage = () => {
+  //   localStorage.setItem('hasVisitedInitialPage', 'true')
+  //   setHasVisitedInitialPage(true)
+  // }
   return (
     <Provider store={store}>
       <CacheProvider value={emotionCache}>
@@ -146,15 +152,15 @@ const App = props => {
               {({ settings }) => {
                 return (
                   <ThemeComponent settings={settings}>
-                    {!hasVisitedInitialPage ? (
+                    {/* {!hasVisitedInitialPage ? (
                       <InitialPage onVisit={handleVisitInitialPage} />
                     ) : (
-                      <Guard authGuard={authGuard} guestGuard={guestGuard}>
-                        <AclGuard aclAbilities={aclAbilities} guestGuard={guestGuard} authGuard={authGuard}>
-                          {getLayout(<Component {...pageProps} />)}
-                        </AclGuard>
-                      </Guard>
-                    )}
+                    )} */}
+                    <Guard authGuard={authGuard} guestGuard={guestGuard}>
+                      <AclGuard aclAbilities={aclAbilities} guestGuard={guestGuard} authGuard={authGuard}>
+                        {getLayout(<Component {...pageProps} />)}
+                      </AclGuard>
+                    </Guard>
                     <ReactHotToast>
                       <Toaster position={settings.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
                     </ReactHotToast>

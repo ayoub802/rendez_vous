@@ -58,13 +58,34 @@ const AddActions = () => {
       </Grid>
       <Grid item xs={12}>
         <FormControl fullWidth>
-          <InputLabel id='payment-select'>Accept payments via</InputLabel>
+          <InputLabel
+            id='payment-select'
+            sx={{
+              color: 'grey', // Default label color
+              '&.Mui-focused': {
+                color: '#1273D1' // Label color on focus
+              },
+              '&.Mui-error': {
+                color: 'red' // Label color on error
+              }
+            }}
+          >
+            Accept payments via
+          </InputLabel>
           <Select
             fullWidth
             defaultValue='Internet Banking'
             label='Accept payments via'
             labelId='payment-select'
-            sx={{ mb: 4 }}
+            sx={{
+              mb: 4,
+              '&:hover:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error) .MuiOutlinedInput-notchedOutline': {
+                borderColor: '#1273D1'
+              },
+              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                borderColor: '#1273D1'
+              }
+            }}
           >
             <MenuItem value='Internet Banking'>Internet Banking</MenuItem>
             <MenuItem value='Debit Card'>Debit Card</MenuItem>
@@ -80,7 +101,18 @@ const AddActions = () => {
           >
             Payment Terms
           </InputLabel>
-          <Switch defaultChecked id='invoice-add-payment-terms' />
+          <Switch
+            defaultChecked
+            id='invoice-add-payment-terms'
+            sx={{
+              '& .Mui-checked+.MuiSwitch-track': {
+                backgroundColor: '#1273D1 !important'
+              },
+              '& .Mui-checked .MuiSwitch-thumb': {
+                backgroundColor: '#1273D1'
+              }
+            }}
+          />
         </OptionsWrapper>
         <OptionsWrapper sx={{ mb: 1 }}>
           <InputLabel
@@ -89,7 +121,17 @@ const AddActions = () => {
           >
             Client Notes
           </InputLabel>
-          <Switch id='invoice-add-client-notes' />
+          <Switch
+            id='invoice-add-client-notes'
+            sx={{
+              '& .Mui-checked+.MuiSwitch-track': {
+                backgroundColor: '#1273D1 !important'
+              },
+              '& .Mui-checked .MuiSwitch-thumb': {
+                backgroundColor: '#1273D1'
+              }
+            }}
+          />
         </OptionsWrapper>
         <OptionsWrapper>
           <InputLabel
@@ -98,7 +140,17 @@ const AddActions = () => {
           >
             Payment Stub
           </InputLabel>
-          <Switch id='invoice-add-payment-stub' />
+          <Switch
+            id='invoice-add-payment-stub'
+            sx={{
+              '& .Mui-checked+.MuiSwitch-track': {
+                backgroundColor: '#1273D1 !important'
+              },
+              '& .Mui-checked .MuiSwitch-thumb': {
+                backgroundColor: '#1273D1'
+              }
+            }}
+          />
         </OptionsWrapper>
       </Grid>
     </Grid>

@@ -99,6 +99,35 @@ const AddNewCustomer = ({ open, toggle, setSelectedClient, clients, setClients }
                 variant='outlined'
                 onChange={onChange}
                 error={Boolean(errors.name)}
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'grey' // Default border color
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'blue' // Border color on hover
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#1273D1' // Border color on focus
+                    },
+                    '& .MuiInputLabel-root': {
+                      color: 'grey' // Default label color
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#1273D1' // Label color on focus
+                    }
+                  }
+                }}
+                InputLabelProps={{
+                  sx: {
+                    '&.Mui-focused': {
+                      color: '#1273D1' // Label color on focus
+                    },
+                    '&.Mui-focused.Mui-error': {
+                      color: 'red' // Label color on focus
+                    }
+                  }
+                }}
               />
             )}
           />
@@ -120,6 +149,35 @@ const AddNewCustomer = ({ open, toggle, setSelectedClient, clients, setClients }
                 variant='outlined'
                 onChange={onChange}
                 error={Boolean(errors.company)}
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'grey' // Default border color
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'blue' // Border color on hover
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#1273D1' // Border color on focus
+                    },
+                    '& .MuiInputLabel-root': {
+                      color: 'grey' // Default label color
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#1273D1' // Label color on focus
+                    }
+                  }
+                }}
+                InputLabelProps={{
+                  sx: {
+                    '&.Mui-focused': {
+                      color: '#1273D1' // Label color on focus
+                    },
+                    '&.Mui-focused.Mui-error': {
+                      color: 'red' // Label color on focus
+                    }
+                  }
+                }}
               />
             )}
           />
@@ -142,6 +200,35 @@ const AddNewCustomer = ({ open, toggle, setSelectedClient, clients, setClients }
                 variant='outlined'
                 onChange={onChange}
                 error={Boolean(errors.email)}
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'grey' // Default border color
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'blue' // Border color on hover
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#1273D1' // Border color on focus
+                    },
+                    '& .MuiInputLabel-root': {
+                      color: 'grey' // Default label color
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#1273D1' // Label color on focus
+                    }
+                  }
+                }}
+                InputLabelProps={{
+                  sx: {
+                    '&.Mui-focused': {
+                      color: '#1273D1' // Label color on focus
+                    },
+                    '&.Mui-focused.Mui-error': {
+                      color: 'red' // Label color on focus
+                    }
+                  }
+                }}
               />
             )}
           />
@@ -166,6 +253,35 @@ const AddNewCustomer = ({ open, toggle, setSelectedClient, clients, setClients }
                 onChange={onChange}
                 error={Boolean(errors.address)}
                 placeholder='1037 Lady Bug  Drive New York'
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'grey' // Default border color
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'blue' // Border color on hover
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#1273D1' // Border color on focus
+                    },
+                    '& .MuiInputLabel-root': {
+                      color: 'grey' // Default label color
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#1273D1' // Label color on focus
+                    }
+                  }
+                }}
+                InputLabelProps={{
+                  sx: {
+                    '&.Mui-focused': {
+                      color: '#1273D1' // Label color on focus
+                    },
+                    '&.Mui-focused.Mui-error': {
+                      color: 'red' // Label color on focus
+                    }
+                  }
+                }}
               />
             )}
           />
@@ -176,7 +292,20 @@ const AddNewCustomer = ({ open, toggle, setSelectedClient, clients, setClients }
           )}
         </FormControl>
         <FormControl fullWidth sx={{ mb: 6 }}>
-          <InputLabel id='invoice-country'>Country</InputLabel>
+          <InputLabel
+            id='invoice-country'
+            sx={{
+              color: 'grey', // Default label color
+              '&.Mui-focused': {
+                color: '#1273D1' // Label color on focus
+              },
+              '&.Mui-error': {
+                color: 'red' // Label color on error
+              }
+            }}
+          >
+            Country
+          </InputLabel>
 
           <Controller
             name='country'
@@ -189,6 +318,14 @@ const AddNewCustomer = ({ open, toggle, setSelectedClient, clients, setClients }
                 onChange={onChange}
                 labelId='invoice-country'
                 error={Boolean(errors.country)}
+                sx={{
+                  '&:hover:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error) .MuiOutlinedInput-notchedOutline': {
+                    borderColor: '#1273D1'
+                  },
+                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: '#1273D1'
+                  }
+                }}
               >
                 <MenuItem value='USA'>USA</MenuItem>
                 <MenuItem value='UK'>UK</MenuItem>
@@ -218,6 +355,35 @@ const AddNewCustomer = ({ open, toggle, setSelectedClient, clients, setClients }
                 label='Contact Number'
                 placeholder='763-242-9206'
                 error={Boolean(errors.contact)}
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'grey' // Default border color
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'blue' // Border color on hover
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#1273D1' // Border color on focus
+                    },
+                    '& .MuiInputLabel-root': {
+                      color: 'grey' // Default label color
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#1273D1' // Label color on focus
+                    }
+                  }
+                }}
+                InputLabelProps={{
+                  sx: {
+                    '&.Mui-focused': {
+                      color: '#1273D1' // Label color on focus
+                    },
+                    '&.Mui-focused.Mui-error': {
+                      color: 'red' // Label color on focus
+                    }
+                  }
+                }}
               />
             )}
           />

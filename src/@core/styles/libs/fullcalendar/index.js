@@ -78,10 +78,10 @@ const CalendarWrapper = styled(Box)(({ theme }) => {
             '&:not(.fc-prev-button):not(.fc-next-button)': {
               backgroundColor: 'transparent',
               padding: theme.spacing(1.5, 5.08),
-              color: theme.palette.primary.main,
-              borderColor: hexToRGBA(theme.palette.primary.main, 0.5),
+              color: '#1273D1',
+              borderColor: '#1273D1',
               '&.fc-button-active, &:hover': {
-                borderColor: hexToRGBA(theme.palette.primary.main, 0.5),
+                borderColor: '#1273D1',
                 backgroundColor: hexToRGBA(theme.palette.primary.main, 0.05)
               }
             }

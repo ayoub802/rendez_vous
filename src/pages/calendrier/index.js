@@ -53,6 +53,8 @@ const AppCalendar = () => {
   const dispatch = useDispatch()
   const store = useSelector(state => state.calendar)
 
+  console.log('The Store => ', store)
+
   // ** Vars
   const leftSidebarWidth = 260
   const addEventSidebarWidth = 400

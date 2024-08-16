@@ -112,7 +112,38 @@ const TableHeader = props => {
           size='small'
           value={value}
           placeholder='Search Invoice'
-          sx={{ mr: 4, mb: 2, maxWidth: '180px' }}
+          sx={{
+            mr: 4,
+            mb: 2,
+            maxWidth: '180px',
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'grey' // Default border color
+              },
+              '&:hover fieldset': {
+                borderColor: 'blue' // Border color on hover
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#1273D1' // Border color on focus
+              },
+              '& .MuiInputLabel-root': {
+                color: 'grey' // Default label color
+              },
+              '& .MuiInputLabel-root.Mui-focused': {
+                color: '#1273D1' // Label color on focus
+              }
+            }
+          }}
+          InputLabelProps={{
+            sx: {
+              '&.Mui-focused': {
+                color: '#1273D1' // Label color on focus
+              },
+              '&.Mui-focused.Mui-error': {
+                color: 'red' // Label color on focus
+              }
+            }
+          }}
           onChange={e => handleFilter(e.target.value)}
         />
         <Button
@@ -208,7 +239,44 @@ const CustomInput = forwardRef((props, ref) => {
   props.start === null && props.dates.length && props.setDates ? props.setDates([]) : null
   const updatedProps = { ...props }
   delete updatedProps.setDates
-  return <TextField fullWidth inputRef={ref} {...updatedProps} label={props.label || ''} value={value} />
+  return (
+    <TextField
+      fullWidth
+      inputRef={ref}
+      {...updatedProps}
+      label={props.label || ''}
+      value={value}
+      sx={{
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            borderColor: 'grey' // Default border color
+          },
+          '&:hover fieldset': {
+            borderColor: 'blue' // Border color on hover
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: '#1273D1' // Border color on focus
+          },
+          '& .MuiInputLabel-root': {
+            color: 'grey' // Default label color
+          },
+          '& .MuiInputLabel-root.Mui-focused': {
+            color: '#1273D1' // Label color on focus
+          }
+        }
+      }}
+      InputLabelProps={{
+        sx: {
+          '&.Mui-focused': {
+            color: '#1273D1' // Label color on focus
+          },
+          '&.Mui-focused.Mui-error': {
+            color: 'red' // Label color on focus
+          }
+        }
+      }}
+    />
+  )
 })
 
 /* eslint-enable */
@@ -302,12 +370,35 @@ const InvoiceList = () => {
               <Grid container spacing={6}>
                 <Grid item xs={12} sm={6}>
                   <FormControl fullWidth>
-                    <InputLabel id='invoice-status-select'>Invoice Status</InputLabel>
+                    <InputLabel
+                      id='invoice-status-select'
+                      sx={{
+                        color: 'grey', // Default label color
+                        '&.Mui-focused': {
+                          color: '#1273D1' // Label color on focus
+                        },
+                        '&.Mui-error': {
+                          color: 'red' // Label color on error
+                        }
+                      }}
+                    >
+                      Invoice Status
+                    </InputLabel>
 
                     <Select
                       fullWidth
                       value={statusValue}
-                      sx={{ mr: 4, mb: 2 }}
+                      sx={{
+                        mr: 4,
+                        mb: 2,
+                        '&:hover:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error) .MuiOutlinedInput-notchedOutline':
+                          {
+                            borderColor: '#1273D1'
+                          },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: '#1273D1'
+                        }
+                      }}
                       label='Invoice Status'
                       onChange={handleStatusValue}
                       labelId='invoice-status-select'
@@ -361,6 +452,11 @@ const InvoiceList = () => {
               pageSizeOptions={[10, 25, 50]}
               paginationModel={paginationModel}
               onPaginationModelChange={setPaginationModel}
+              sx={{
+                '& .MuiCheckbox-root.MuiCheckbox-root': {
+                  color: '#1273D1'
+                }
+              }}
             />
           </Card>
         </Grid>

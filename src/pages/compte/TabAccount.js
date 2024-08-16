@@ -160,8 +160,35 @@ const TabAccount = () => {
                   fullWidth
                   label='Utilisateur'
                   placeholder='Utilisateur'
-                  // value={formData.firstName}
-                  // onChange={e => handleFormChange('firstName', e.target.value)}
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: 'grey' // Default border color
+                      },
+                      '&:hover fieldset': {
+                        borderColor: 'blue' // Border color on hover
+                      },
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#1273D1' // Border color on focus
+                      },
+                      '& .MuiInputLabel-root': {
+                        color: 'grey' // Default label color
+                      },
+                      '& .MuiInputLabel-root.Mui-focused': {
+                        color: '#1273D1' // Label color on focus
+                      }
+                    }
+                  }}
+                  InputLabelProps={{
+                    sx: {
+                      '&.Mui-focused': {
+                        color: '#1273D1' // Label color on focus
+                      },
+                      '&.Mui-focused.Mui-error': {
+                        color: 'red' // Label color on focus
+                      }
+                    }
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -169,8 +196,35 @@ const TabAccount = () => {
                   fullWidth
                   label='Nom'
                   placeholder='Nom'
-                  // value={formData.lastName}
-                  // onChange={e => handleFormChange('lastName', e.target.value)}
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: 'grey' // Default border color
+                      },
+                      '&:hover fieldset': {
+                        borderColor: 'blue' // Border color on hover
+                      },
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#1273D1' // Border color on focus
+                      },
+                      '& .MuiInputLabel-root': {
+                        color: 'grey' // Default label color
+                      },
+                      '& .MuiInputLabel-root.Mui-focused': {
+                        color: '#1273D1' // Label color on focus
+                      }
+                    }
+                  }}
+                  InputLabelProps={{
+                    sx: {
+                      '&.Mui-focused': {
+                        color: '#1273D1' // Label color on focus
+                      },
+                      '&.Mui-focused.Mui-error': {
+                        color: 'red' // Label color on focus
+                      }
+                    }
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -178,8 +232,35 @@ const TabAccount = () => {
                   fullWidth
                   label='Email'
                   placeholder='Email'
-                  // value={formData.organization}
-                  // onChange={e => handleFormChange('organization', e.target.value)}
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: 'grey' // Default border color
+                      },
+                      '&:hover fieldset': {
+                        borderColor: 'blue' // Border color on hover
+                      },
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#1273D1' // Border color on focus
+                      },
+                      '& .MuiInputLabel-root': {
+                        color: 'grey' // Default label color
+                      },
+                      '& .MuiInputLabel-root.Mui-focused': {
+                        color: '#1273D1' // Label color on focus
+                      }
+                    }
+                  }}
+                  InputLabelProps={{
+                    sx: {
+                      '&.Mui-focused': {
+                        color: '#1273D1' // Label color on focus
+                      },
+                      '&.Mui-focused.Mui-error': {
+                        color: 'red' // Label color on focus
+                      }
+                    }
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -187,8 +268,35 @@ const TabAccount = () => {
                   fullWidth
                   label='Prénom'
                   placeholder='Prénom'
-                  // value={formData.organization}
-                  // onChange={e => handleFormChange('organization', e.target.value)}
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: 'grey' // Default border color
+                      },
+                      '&:hover fieldset': {
+                        borderColor: 'blue' // Border color on hover
+                      },
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#1273D1' // Border color on focus
+                      },
+                      '& .MuiInputLabel-root': {
+                        color: 'grey' // Default label color
+                      },
+                      '& .MuiInputLabel-root.Mui-focused': {
+                        color: '#1273D1' // Label color on focus
+                      }
+                    }
+                  }}
+                  InputLabelProps={{
+                    sx: {
+                      '&.Mui-focused': {
+                        color: '#1273D1' // Label color on focus
+                      },
+                      '&.Mui-focused.Mui-error': {
+                        color: 'red' // Label color on focus
+                      }
+                    }
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -197,8 +305,35 @@ const TabAccount = () => {
                   label='Mot de passe'
                   type='password'
                   placeholder='Mot de passe'
-                  // value={formData.organization}
-                  // onChange={e => handleFormChange('organization', e.target.value)}
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: 'grey' // Default border color
+                      },
+                      '&:hover fieldset': {
+                        borderColor: 'blue' // Border color on hover
+                      },
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#1273D1' // Border color on focus
+                      },
+                      '& .MuiInputLabel-root': {
+                        color: 'grey' // Default label color
+                      },
+                      '& .MuiInputLabel-root.Mui-focused': {
+                        color: '#1273D1' // Label color on focus
+                      }
+                    }
+                  }}
+                  InputLabelProps={{
+                    sx: {
+                      '&.Mui-focused': {
+                        color: '#1273D1' // Label color on focus
+                      },
+                      '&.Mui-focused.Mui-error': {
+                        color: 'red' // Label color on focus
+                      }
+                    }
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -206,8 +341,35 @@ const TabAccount = () => {
                   fullWidth
                   label='Téléphone'
                   placeholder='Téléphone'
-                  // value={formData.organization}
-                  // onChange={e => handleFormChange('organization', e.target.value)}
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: 'grey' // Default border color
+                      },
+                      '&:hover fieldset': {
+                        borderColor: 'blue' // Border color on hover
+                      },
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#1273D1' // Border color on focus
+                      },
+                      '& .MuiInputLabel-root': {
+                        color: 'grey' // Default label color
+                      },
+                      '& .MuiInputLabel-root.Mui-focused': {
+                        color: '#1273D1' // Label color on focus
+                      }
+                    }
+                  }}
+                  InputLabelProps={{
+                    sx: {
+                      '&.Mui-focused': {
+                        color: '#1273D1' // Label color on focus
+                      },
+                      '&.Mui-focused.Mui-error': {
+                        color: 'red' // Label color on focus
+                      }
+                    }
+                  }}
                 />
               </Grid>
 

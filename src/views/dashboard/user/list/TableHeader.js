@@ -24,9 +24,39 @@ const TableHeader = props => {
         <TextField
           size='small'
           value={value}
-          sx={{ mr: 6, mb: 2 }}
           placeholder='Rechercher'
           onChange={e => handleFilter(e.target.value)}
+          sx={{
+            mr: 6,
+            mb: 2,
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'grey' // Default border color
+              },
+              '&:hover fieldset': {
+                borderColor: 'blue' // Border color on hover
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#1273D1' // Border color on focus
+              },
+              '& .MuiInputLabel-root': {
+                color: 'grey' // Default label color
+              },
+              '& .MuiInputLabel-root.Mui-focused': {
+                color: '#1273D1' // Label color on focus
+              }
+            }
+          }}
+          InputLabelProps={{
+            sx: {
+              '&.Mui-focused': {
+                color: '#1273D1' // Label color on focus
+              },
+              '&.Mui-focused.Mui-error': {
+                color: 'red' // Label color on focus
+              }
+            }
+          }}
         />
 
         <Button

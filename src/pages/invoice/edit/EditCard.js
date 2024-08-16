@@ -43,7 +43,27 @@ const CustomInput = forwardRef(({ ...props }, ref) => {
       size='small'
       inputRef={ref}
       {...props}
-      sx={{ width: { sm: '250px', xs: '170px' }, '& .MuiInputBase-input': { color: 'text.secondary' } }}
+      sx={{
+        width: { sm: '250px', xs: '170px' },
+        '& .MuiInputBase-input': { color: 'text.secondary' },
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            borderColor: 'grey' // Default border color
+          },
+          '&:hover fieldset': {
+            borderColor: 'blue' // Border color on hover
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: '#1273D1' // Border color on focus
+          },
+          '& .MuiInputLabel-root': {
+            color: 'grey' // Default label color
+          },
+          '& .MuiInputLabel-root.Mui-focused': {
+            color: '#1273D1' // Label color on focus
+          }
+        }
+      }}
     />
   )
 })
@@ -226,9 +246,28 @@ const EditCard = () => {
                 </Typography>
                 <TextField
                   size='small'
-                  sx={{ width: { sm: '250px', xs: '170px' } }}
+                  sx={{
+                    width: { sm: '250px', xs: '170px' },
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: 'grey' // Default border color
+                      },
+                      '&:hover fieldset': {
+                        borderColor: 'blue' // Border color on hover
+                      },
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#1273D1' // Border color on focus
+                      },
+                      '& .MuiInputLabel-root': {
+                        color: 'grey' // Default label color
+                      },
+                      '& .MuiInputLabel-root.Mui-focused': {
+                        color: '#1273D1' // Label color on focus
+                      }
+                    }
+                  }}
                   InputProps={{
-                    disabled: true,
+                    disabled: false,
                     startAdornment: <InputAdornment position='start'>#</InputAdornment>
                   }}
                 />
@@ -273,7 +312,17 @@ const EditCard = () => {
               size='small'
               value={'Jordan Steven'}
               onChange={handleInvoiceChange}
-              sx={{ mb: 4, width: '200px', color: 'text.secondary' }}
+              sx={{
+                mb: 4,
+                color: 'text.secondary',
+                width: '200px',
+                '&:hover:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error) .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#1273D1'
+                },
+                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#1273D1'
+                }
+              }}
             >
               {/* {clients !== undefined &&
                   clients.map(client => (
@@ -357,7 +406,6 @@ const EditCard = () => {
       </CardContent>
 
       <Divider sx={{ mb: theme => `${theme.spacing(1.25)} !important` }} />
-
       <RepeaterWrapper>
         <Repeater count={count}>
           {i => {
@@ -368,7 +416,7 @@ const EditCard = () => {
                 <Grid container>
                   <RepeatingContent item xs={12}>
                     <Grid container sx={{ py: 4, width: '100%', pr: { lg: 0, xs: 4 } }}>
-                      <Grid item lg={6} md={5} xs={12} sx={{ px: 4, my: { lg: 0, xs: 2 } }}>
+                      <Grid item lg={6} md={5} xs={12} sx={{ px: 4, my: { lg: 0, xs: 4 } }}>
                         <Typography
                           variant='subtitle2'
                           className='col-title'
@@ -376,7 +424,20 @@ const EditCard = () => {
                         >
                           Item
                         </Typography>
-                        <Select fullWidth size='small' defaultValue='App Design'>
+                        <Select
+                          fullWidth
+                          size='small'
+                          defaultValue='App Design'
+                          sx={{
+                            '&:hover:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error) .MuiOutlinedInput-notchedOutline':
+                              {
+                                borderColor: '#1273D1'
+                              },
+                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                              borderColor: '#1273D1'
+                            }
+                          }}
+                        >
                           <MenuItem value='App Design'>App Design</MenuItem>
                           <MenuItem value='App Customization'>App Customization</MenuItem>
                           <MenuItem value='ABC Template'>ABC Template</MenuItem>
@@ -387,15 +448,54 @@ const EditCard = () => {
                           fullWidth
                           multiline
                           size='small'
-                          sx={{ mt: 3.5 }}
                           defaultValue='Customization & Bug Fixes'
+                          sx={{
+                            mt: 3.5,
+                            '& .MuiOutlinedInput-root': {
+                              '& fieldset': {
+                                borderColor: 'grey' // Default border color
+                              },
+                              '&:hover fieldset': {
+                                borderColor: 'blue' // Border color on hover
+                              },
+                              '&.Mui-focused fieldset': {
+                                borderColor: '#1273D1' // Border color on focus
+                              },
+                              '& .MuiInputLabel-root': {
+                                color: 'grey' // Default label color
+                              },
+                              '& .MuiInputLabel-root.Mui-focused': {
+                                color: '#1273D1' // Label color on focus
+                              }
+                            }
+                          }}
                         />
                       </Grid>
-                      <Grid item lg={2} md={3} xs={12} sx={{ px: 4, my: { lg: 0, xs: 2 } }}>
+                      <Grid item lg={2} md={3} xs={12} sx={{ px: 4, my: { lg: 0, xs: 4 } }}>
                         <Typography
                           variant='subtitle2'
                           className='col-title'
-                          sx={{ mb: { md: 2, xs: 0 }, color: 'text.primary' }}
+                          sx={{
+                            mb: { md: 2, xs: 0 },
+                            color: 'text.primary',
+                            '& .MuiOutlinedInput-root': {
+                              '& fieldset': {
+                                borderColor: 'grey' // Default border color
+                              },
+                              '&:hover fieldset': {
+                                borderColor: 'blue' // Border color on hover
+                              },
+                              '&.Mui-focused fieldset': {
+                                borderColor: '#1273D1' // Border color on focus
+                              },
+                              '& .MuiInputLabel-root': {
+                                color: 'grey' // Default label color
+                              },
+                              '& .MuiInputLabel-root.Mui-focused': {
+                                color: '#1273D1' // Label color on focus
+                              }
+                            }
+                          }}
                         >
                           Cost
                         </Typography>
@@ -405,6 +505,25 @@ const EditCard = () => {
                           placeholder='24'
                           defaultValue='24'
                           InputProps={{ inputProps: { min: 0 } }}
+                          sx={{
+                            '& .MuiOutlinedInput-root': {
+                              '& fieldset': {
+                                borderColor: 'grey' // Default border color
+                              },
+                              '&:hover fieldset': {
+                                borderColor: 'blue' // Border color on hover
+                              },
+                              '&.Mui-focused fieldset': {
+                                borderColor: '#1273D1' // Border color on focus
+                              },
+                              '& .MuiInputLabel-root': {
+                                color: 'grey' // Default label color
+                              },
+                              '& .MuiInputLabel-root.Mui-focused': {
+                                color: '#1273D1' // Label color on focus
+                              }
+                            }
+                          }}
                         />
                         <Box sx={{ mt: 3.5 }}>
                           <Typography component='span' variant='body2' sx={{ lineHeight: 2 }}>
@@ -425,7 +544,7 @@ const EditCard = () => {
                           </Tooltip>
                         </Box>
                       </Grid>
-                      <Grid item lg={2} md={2} xs={12} sx={{ px: 4, my: { lg: 0, xs: 2 } }}>
+                      <Grid item lg={2} md={2} xs={12} sx={{ px: 4, my: { lg: 0, xs: 4 } }}>
                         <Typography
                           variant='subtitle2'
                           className='col-title'
@@ -439,6 +558,25 @@ const EditCard = () => {
                           placeholder='1'
                           defaultValue='1'
                           InputProps={{ inputProps: { min: 0 } }}
+                          sx={{
+                            '& .MuiOutlinedInput-root': {
+                              '& fieldset': {
+                                borderColor: 'grey' // Default border color
+                              },
+                              '&:hover fieldset': {
+                                borderColor: 'blue' // Border color on hover
+                              },
+                              '&.Mui-focused fieldset': {
+                                borderColor: '#1273D1' // Border color on focus
+                              },
+                              '& .MuiInputLabel-root': {
+                                color: 'grey' // Default label color
+                              },
+                              '& .MuiInputLabel-root.Mui-focused': {
+                                color: '#1273D1' // Label color on focus
+                              }
+                            }
+                          }}
                         />
                       </Grid>
                       <Grid item lg={2} md={1} xs={12} sx={{ px: 4, my: { lg: 0 }, mt: 2 }}>
@@ -469,8 +607,8 @@ const EditCard = () => {
             <Button
               size='small'
               variant='contained'
-              onClick={() => setCount(count + 1)}
               startIcon={<Icon icon='mdi:plus' fontSize={20} />}
+              onClick={() => setCount(count + 1)}
               sx={{
                 mb: 3.5,
                 backgroundColor: '#1273D1',
@@ -497,14 +635,54 @@ const EditCard = () => {
               </Typography>
               <TextField
                 size='small'
-                sx={{ maxWidth: '150px', '& .MuiInputBase-input': { color: 'text.secondary' } }}
                 defaultValue='Tommy Shelby'
+                sx={{
+                  maxWidth: '150px',
+                  '& .MuiInputBase-input': { color: 'text.secondary' },
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'grey' // Default border color
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'blue' // Border color on hover
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#1273D1' // Border color on focus
+                    },
+                    '& .MuiInputLabel-root': {
+                      color: 'grey' // Default label color
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#1273D1' // Label color on focus
+                    }
+                  }
+                }}
               />
             </Box>
             <TextField
               size='small'
-              sx={{ maxWidth: '300px', '& .MuiInputBase-input': { color: 'text.secondary' } }}
-              defaultValue='Thanks for your business'
+              placeholder='Thanks for your business'
+              sx={{
+                maxWidth: '300px',
+                '& .MuiInputBase-input': { color: 'text.secondary' },
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'grey' // Default border color
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'blue' // Border color on hover
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#1273D1' // Border color on focus
+                  },
+                  '& .MuiInputLabel-root': {
+                    color: 'grey' // Default label color
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: '#1273D1' // Label color on focus
+                  }
+                }
+              }}
             />
           </Grid>
           <Grid item xs={12} sm={3} sx={{ mb: { sm: 0, xs: 4 }, order: { sm: 2, xs: 1 } }}>
@@ -527,7 +705,7 @@ const EditCard = () => {
               </Typography>
             </CalcWrapper>
             <Divider
-              sx={{ mt: theme => `${theme.spacing(5)} !important`, mb: theme => `${theme.spacing(1.5)} !important` }}
+              sx={{ mt: theme => `${theme.spacing(6)} !important`, mb: theme => `${theme.spacing(1.5)} !important` }}
             />
             <CalcWrapper>
               <Typography variant='body2'>Total:</Typography>
@@ -550,7 +728,26 @@ const EditCard = () => {
           fullWidth
           multiline
           id='invoice-note'
-          sx={{ '& .MuiInputBase-input': { color: 'text.secondary' } }}
+          sx={{
+            '& .MuiInputBase-input': { color: 'text.secondary' },
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'grey' // Default border color
+              },
+              '&:hover fieldset': {
+                borderColor: 'blue' // Border color on hover
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#1273D1' // Border color on focus
+              },
+              '& .MuiInputLabel-root': {
+                color: 'grey' // Default label color
+              },
+              '& .MuiInputLabel-root.Mui-focused': {
+                color: '#1273D1' // Label color on focus
+              }
+            }
+          }}
           defaultValue='It was a pleasure working with you and your team. We hope you will keep us in mind for future freelance projects. Thank You!'
         />
       </CardContent>

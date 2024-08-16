@@ -86,6 +86,9 @@ const AddEventSidebar = props => {
         description: values.description.length ? values.description : undefined
       }
     }
+
+    console.log('The Data of Calendar => ', modifiedEvent)
+
     if (store.selectedEvent === null || (store.selectedEvent !== null && !store.selectedEvent.title.length)) {
       dispatch(addEvent(modifiedEvent))
     } else {
@@ -146,8 +149,37 @@ const AddEventSidebar = props => {
         fullWidth
         {...props}
         label={props.label || ''}
-        sx={{ width: '100%' }}
         error={props.error}
+        sx={{
+          width: '100%',
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: 'grey' // Default border color
+            },
+            '&:hover fieldset': {
+              borderColor: 'blue' // Border color on hover
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: '#1273D1' // Border color on focus
+            },
+            '& .MuiInputLabel-root': {
+              color: 'grey' // Default label color
+            },
+            '& .MuiInputLabel-root.Mui-focused': {
+              color: '#1273D1' // Label color on focus
+            }
+          }
+        }}
+        InputLabelProps={{
+          sx: {
+            '&.Mui-focused': {
+              color: '#1273D1' // Label color on focus
+            },
+            '&.Mui-focused.Mui-error': {
+              color: 'red' // Label color on focus
+            }
+          }
+        }}
       />
     )
   })
@@ -242,7 +274,41 @@ const AddEventSidebar = props => {
                 control={control}
                 rules={{ required: true }}
                 render={({ field: { value, onChange } }) => (
-                  <TextField label='Title' value={value} onChange={onChange} error={Boolean(errors.title)} />
+                  <TextField
+                    label='Title'
+                    value={value}
+                    onChange={onChange}
+                    error={Boolean(errors.title)}
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                          borderColor: 'grey' // Default border color
+                        },
+                        '&:hover fieldset': {
+                          borderColor: 'blue' // Border color on hover
+                        },
+                        '&.Mui-focused fieldset': {
+                          borderColor: '#1273D1' // Border color on focus
+                        },
+                        '& .MuiInputLabel-root': {
+                          color: 'grey' // Default label color
+                        },
+                        '& .MuiInputLabel-root.Mui-focused': {
+                          color: '#1273D1' // Label color on focus
+                        }
+                      }
+                    }}
+                    InputLabelProps={{
+                      sx: {
+                        '&.Mui-focused': {
+                          color: '#1273D1' // Label color on focus
+                        },
+                        '&.Mui-focused.Mui-error': {
+                          color: 'red' // Label color on focus
+                        }
+                      }
+                    }}
+                  />
                 )}
               />
               {errors.title && (
@@ -252,12 +318,33 @@ const AddEventSidebar = props => {
               )}
             </FormControl>
             <FormControl fullWidth sx={{ mb: 6 }}>
-              <InputLabel id='event-calendar'>Calendar</InputLabel>
+              <InputLabel
+                id='event-calendar'
+                sx={{
+                  color: 'grey', // Default label color
+                  '&.Mui-focused': {
+                    color: '#1273D1' // Label color on focus
+                  },
+                  '&.Mui-error': {
+                    color: 'red' // Label color on error
+                  }
+                }}
+              >
+                Calendar
+              </InputLabel>
               <Select
                 label='Calendar'
                 value={values.calendar}
                 labelId='event-calendar'
                 onChange={e => setValues({ ...values, calendar: e.target.value })}
+                sx={{
+                  '&:hover:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error) .MuiOutlinedInput-notchedOutline': {
+                    borderColor: '#1273D1'
+                  },
+                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: '#1273D1'
+                  }
+                }}
               >
                 <MenuItem value='Personal'>Personal</MenuItem>
                 <MenuItem value='Business'>Business</MenuItem>
@@ -317,13 +404,55 @@ const AddEventSidebar = props => {
               fullWidth
               type='url'
               id='event-url'
-              sx={{ mb: 6 }}
               label='Event URL'
               value={values.url}
               onChange={e => setValues({ ...values, url: e.target.value })}
+              sx={{
+                mb: 6,
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'grey' // Default border color
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'blue' // Border color on hover
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#1273D1' // Border color on focus
+                  },
+                  '& .MuiInputLabel-root': {
+                    color: 'grey' // Default label color
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: '#1273D1' // Label color on focus
+                  }
+                }
+              }}
+              InputLabelProps={{
+                sx: {
+                  '&.Mui-focused': {
+                    color: '#1273D1' // Label color on focus
+                  },
+                  '&.Mui-focused.Mui-error': {
+                    color: 'red' // Label color on focus
+                  }
+                }
+              }}
             />
             <FormControl fullWidth sx={{ mb: 6 }}>
-              <InputLabel id='event-guests'>Guests</InputLabel>
+              <InputLabel
+                id='event-guests'
+                sx={{
+                  color: 'grey', // Default label color
+                  '&.Mui-focused': {
+                    color: '#1273D1' // Label color on focus
+                  },
+                  '&.Mui-error': {
+                    color: 'red' // Label color on error
+                  }
+                }}
+              >
+                Guests
+              </InputLabel>
               <Select
                 multiple
                 label='Guests'
@@ -331,6 +460,14 @@ const AddEventSidebar = props => {
                 labelId='event-guests'
                 id='event-guests-select'
                 onChange={e => setValues({ ...values, guests: e.target.value })}
+                sx={{
+                  '&:hover:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error) .MuiOutlinedInput-notchedOutline': {
+                    borderColor: '#1273D1'
+                  },
+                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: '#1273D1'
+                  }
+                }}
               >
                 <MenuItem value='bruce'>Bruce</MenuItem>
                 <MenuItem value='clark'>Clark</MenuItem>
@@ -343,7 +480,36 @@ const AddEventSidebar = props => {
               rows={4}
               multiline
               fullWidth
-              sx={{ mb: 6 }}
+              sx={{
+                mb: 6,
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'grey' // Default border color
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'blue' // Border color on hover
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#1273D1' // Border color on focus
+                  },
+                  '& .MuiInputLabel-root': {
+                    color: 'grey' // Default label color
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: '#1273D1' // Label color on focus
+                  }
+                }
+              }}
+              InputLabelProps={{
+                sx: {
+                  '&.Mui-focused': {
+                    color: '#1273D1' // Label color on focus
+                  },
+                  '&.Mui-focused.Mui-error': {
+                    color: 'red' // Label color on focus
+                  }
+                }
+              }}
               label='Description'
               id='event-description'
               value={values.description}

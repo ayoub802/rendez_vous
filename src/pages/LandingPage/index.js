@@ -10,7 +10,8 @@ import { FiSearch } from 'react-icons/fi'
 import { TiArrowSortedDown } from 'react-icons/ti'
 import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
 import Banner from '../../../public/asstes/LandingPage/heroBanner.png'
-const InitialPage = ({ onVisit }) => {
+import { useRouter } from 'next/router'
+const InitialPage = ({ onVisit, handleVisitInitialPage }) => {
   const [countries, setCountries] = useState(null)
   const [inputValue, setInputValue] = useState('')
   const [selected, setSelected] = useState('')
@@ -27,6 +28,7 @@ const InitialPage = ({ onVisit }) => {
         setCountries(data)
       })
   }, [])
+  const router = useRouter()
 
   const theme = useTheme()
   const { direction } = theme
@@ -40,6 +42,7 @@ const InitialPage = ({ onVisit }) => {
         {...props}
         placeholder='Select Date'
         sx={{
+          width: 150,
           '& .MuiOutlinedInput-root': {
             '&:hover:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error) .MuiOutlinedInput-notchedOutline': {
               borderColor: 'transparent'
@@ -69,7 +72,10 @@ const InitialPage = ({ onVisit }) => {
       />
     )
   })
-
+  // const handleVisitInitialPage = () => {
+  //   localStorage.setItem('hasVisitedInitialPage', 'true')
+  //   router.replace('/register')
+  // }
   const handleChange = event => {
     setPersonName(event.target.value)
   }
@@ -90,7 +96,7 @@ const InitialPage = ({ onVisit }) => {
                 connexion
               </button>
               <button
-                onClick={onVisit}
+                onClick={handleVisitInitialPage}
                 className='rounded-full px-[35px] py-[9px] border-[1.5px] border-white font-[500] text-white text-[14px] capitalize'
               >
                 S’enregistrer
@@ -111,143 +117,8 @@ const InitialPage = ({ onVisit }) => {
               </div>
 
               <div className='mt-3'>
-                {/* <div className='rounded-full max-w-max w-full bg-white py-4 px-4 pl-9'>
-                  <div className='flex items-center gap-8'>
-                    <div className='border-r border-[#0a1c38]/20 flex flex-col gap-1 pr-6'>
-                      <p>Métier</p>
-                      <div className='font-medium relative'>
-                        <div
-                          onClick={() => setOpen(!open)}
-                          className={`bg-white w-[132px] flex items-center justify-between rounded ${
-                            selected ? 'text-black' : 'text-gray-500'
-                          }`}
-                        >
-                          {selected
-                            ? selected?.length > 25
-                              ? selected?.substring(0, 25) + '...'
-                              : selected
-                            : 'Select Métier'}
-                          <BiChevronDown size={20} className={`${open && 'rotate-180'}`} />
-                        </div>
-                        <ul
-                          className={`bg-white mt-2 overflow-y-auto absolute w-[250px] h-[160px] ${
-                            open ? 'block' : 'hidden'
-                          } `}
-                        >
-                          {countries?.map(country => (
-                            <li
-                              key={country?.name}
-                              className={`p-2 text-sm hover:bg-sky-600 hover:text-white
-                              ${country?.name?.toLowerCase() === selected?.toLowerCase() && 'bg-sky-600 text-white'}
-                              ${country?.name?.toLowerCase().startsWith(inputValue) ? 'block' : 'hidden'}`}
-                              onClick={() => {
-                                if (country?.name?.toLowerCase() !== selected.toLowerCase()) {
-                                  setSelected(country?.name)
-                                  setOpen(false)
-                                  setInputValue('')
-                                }
-                              }}
-                            >
-                              {country?.name}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-
-                    <div className='border-r border-[#0a1c38]/20 flex flex-col gap-1 pr-6'>
-                      <p>Localisation</p>
-                      <div className='font-medium relative'>
-                        <div
-                          onClick={() => setOpen1(!open1)}
-                          className={`bg-white w-[200px] flex items-center justify-between rounded ${
-                            selected1 ? 'text-black' : 'text-gray-500'
-                          }`}
-                        >
-                          {selected1
-                            ? selected1?.length > 25
-                              ? selected1?.substring(0, 25) + '...'
-                              : selected1
-                            : 'Select Localisation'}
-                          <BiChevronDown size={20} className={`${open1 && 'rotate-180'}`} />
-                        </div>
-                        <ul
-                          className={`bg-white mt-2 overflow-y-auto absolute w-[250px] h-[160px] ${
-                            open1 ? 'block' : 'hidden'
-                          } `}
-                        >
-                          {countries?.map(country => (
-                            <li
-                              key={country?.name}
-                              className={`p-2 text-sm hover:bg-sky-600 hover:text-white
-                              ${country?.name?.toLowerCase() === selected1?.toLowerCase() && 'bg-sky-600 text-white'}
-                              ${country?.name?.toLowerCase().startsWith(inputValue) ? 'block' : 'hidden'}`}
-                              onClick={() => {
-                                if (country?.name?.toLowerCase() !== selected1.toLowerCase()) {
-                                  setSelected1(country?.name)
-                                  setOpen1(false)
-                                  setInputValue('')
-                                }
-                              }}
-                            >
-                              {country?.name}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-
-                    <div className='flex flex-col gap-1 pr-6'>
-                      <p>Date</p>
-                      <div className='font-medium relative'>
-                        <div
-                          onClick={() => setOpen1(!open1)}
-                          className={`bg-white w-[132px] flex items-center justify-between rounded ${
-                            selected1 ? 'text-black' : 'text-gray-500'
-                          }`}
-                        >
-                          {selected1
-                            ? selected1?.length > 25
-                              ? selected1?.substring(0, 25) + '...'
-                              : selected1
-                            : 'Select Date'}
-                          <BiChevronDown size={20} className={`${open1 && 'rotate-180'}`} />
-                        </div>
-                        <ul
-                          className={`bg-white mt-2 overflow-y-auto absolute w-[250px] h-[160px] ${
-                            open1 ? 'block' : 'hidden'
-                          } `}
-                        >
-                          {countries?.map(country => (
-                            <li
-                              key={country?.name}
-                              className={`p-2 text-sm hover:bg-sky-600 hover:text-white
-                              ${country?.name?.toLowerCase() === selected1?.toLowerCase() && 'bg-sky-600 text-white'}
-                              ${country?.name?.toLowerCase().startsWith(inputValue) ? 'block' : 'hidden'}`}
-                              onClick={() => {
-                                if (country?.name?.toLowerCase() !== selected1.toLowerCase()) {
-                                  setSelected1(country?.name)
-                                  setOpen1(false)
-                                  setInputValue('')
-                                }
-                              }}
-                            >
-                              {country?.name}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-
-                    <div className='w-[56px] h-[56px] cursor-pointer flex bg-[#1273D1] justify-center items-center rounded-full'>
-                      <FiSearch color='#fff' size={28} />
-                    </div>
-
-                   
-                  </div>
-                </div> */}
                 <div className='rounded-full max-w-[53rem] w-full bg-white shadow mt-4 py-4 px-4 pl-9 pb-4'>
-                  <div className='flex items-center gap-8'>
+                  <div className='flex items-center justify-between '>
                     <div className='border-r border-[#0a1c38]/20 flex flex-col pr-6 '>
                       <h2 className='!text-[18px] font-poppins text-[#0A1C38]/60'>Métier</h2>
 
@@ -302,7 +173,7 @@ const InitialPage = ({ onVisit }) => {
                         onChange={handleChange}
                         placeholder='Select Métier'
                         sx={{
-                          width: 180,
+                          width: 200,
                           '& .MuiOutlinedInput-notchedOutline': {
                             borderColor: 'transparent'
                           },

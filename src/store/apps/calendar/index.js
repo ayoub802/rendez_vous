@@ -3,50 +3,75 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 // ** Axios Imports
 import axios from 'axios'
+const LOCAL_STORAGE_KEY = 'calendarEvents'
 
+// Helper to get events from local storage
+const getEventsFromLocalStorage = () => {
+  const events = localStorage.getItem(LOCAL_STORAGE_KEY)
+  return events ? JSON.parse(events) : []
+}
+
+// Helper to save events to local storage
+const saveEventsToLocalStorage = events => {
+  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(events))
+}
 // ** Fetch Events
 export const fetchEvents = createAsyncThunk('appCalendar/fetchEvents', async calendars => {
-  const response = await axios.get('/apps/calendar/events', {
-    params: {
-      calendars
-    }
-  })
+  const allEvents = getEventsFromLocalStorage()
+  // Filter events based on calendars, assuming each event has a `calendar` property
+  // const filteredEvents = allEvents.filter(event => calendars.includes(event.calendar))
+  console.log('The newEvent => ', allEvents)
 
-  return response.data
+  return allEvents
 })
 
 // ** Add Event
 export const addEvent = createAsyncThunk('appCalendar/addEvent', async (event, { dispatch }) => {
-  const response = await axios.post('/apps/calendar/add-event', {
-    data: {
-      event
-    }
-  })
-  await dispatch(fetchEvents(['Personal', 'Business', 'Family', 'Holiday', 'ETC']))
+  try {
+    const allEvents = getEventsFromLocalStorage()
+    const newEvent = { ...event, id: new Date().getTime() } // Generate a unique ID
+    allEvents.push(newEvent)
 
-  return response.data.event
+    saveEventsToLocalStorage(allEvents)
+
+    // Fetch and return the updated list of events
+    await dispatch(fetchEvents(['Personal', 'Business', 'Family', 'Holiday', 'ETC']))
+
+    return newEvent
+  } catch (error) {
+    console.error('Error adding event:', error.message)
+    throw error
+  }
 })
-
 // ** Update Event
 export const updateEvent = createAsyncThunk('appCalendar/updateEvent', async (event, { dispatch }) => {
-  const response = await axios.post('/apps/calendar/update-event', {
-    data: {
-      event
-    }
-  })
-  await dispatch(fetchEvents(['Personal', 'Business', 'Family', 'Holiday', 'ETC']))
+  const allEvents = getEventsFromLocalStorage()
+  const eventIndex = allEvents.findIndex(e => e.id === event.id)
 
-  return response.data.event
+  if (eventIndex !== -1) {
+    allEvents[eventIndex] = event
+    saveEventsToLocalStorage(allEvents)
+
+    // Fetch and return the updated list of events
+    await dispatch(fetchEvents(['Personal', 'Business', 'Family', 'Holiday', 'ETC']))
+
+    return event
+  } else {
+    throw new Error('Event not found')
+  }
 })
 
 // ** Delete Event
 export const deleteEvent = createAsyncThunk('appCalendar/deleteEvent', async (id, { dispatch }) => {
-  const response = await axios.delete('/apps/calendar/remove-event', {
-    params: { id }
-  })
+  const allEvents = getEventsFromLocalStorage()
+  const updatedEvents = allEvents.filter(event => event.id !== id)
+
+  saveEventsToLocalStorage(updatedEvents)
+
+  // Fetch and return the updated list of events
   await dispatch(fetchEvents(['Personal', 'Business', 'Family', 'Holiday', 'ETC']))
 
-  return response.data
+  return id
 })
 
 export const appCalendarSlice = createSlice({

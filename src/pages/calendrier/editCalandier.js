@@ -20,12 +20,33 @@ const EditCalendar = () => {
   const SelectDate = () => {
     return (
       <FormControl sx={{ width: '100%' }}>
-        <InputLabel id='demo-simple-select-outlined-label'>Jour</InputLabel>
+        <InputLabel
+          id='demo-simple-select-outlined-label'
+          sx={{
+            color: 'grey', // Default label color
+            '&.Mui-focused': {
+              color: '#1273D1' // Label color on focus
+            },
+            '&.Mui-error': {
+              color: 'red' // Label color on error
+            }
+          }}
+        >
+          Jour
+        </InputLabel>
         <Select
           label='Jour'
           defaultValue=''
           id='demo-simple-select-outlined'
           labelId='demo-simple-select-outlined-label'
+          sx={{
+            '&:hover:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error) .MuiOutlinedInput-notchedOutline': {
+              borderColor: '#1273D1'
+            },
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              borderColor: '#1273D1'
+            }
+          }}
         >
           <MenuItem value={'lundi'}>Lundi</MenuItem>
           <MenuItem value={'mardi'}>Mardi</MenuItem>
@@ -41,7 +62,20 @@ const EditCalendar = () => {
   const SelectDisponibilite = () => {
     return (
       <FormControl sx={{ width: '100%' }}>
-        <InputLabel id='demo-simple-select-outlined-label'>Disponibiltés</InputLabel>
+        <InputLabel
+          id='demo-simple-select-outlined-label'
+          sx={{
+            color: 'grey', // Default label color
+            '&.Mui-focused': {
+              color: '#1273D1' // Label color on focus
+            },
+            '&.Mui-error': {
+              color: 'red' // Label color on error
+            }
+          }}
+        >
+          Disponibiltés
+        </InputLabel>
         <Select
           label='Disponibiltés'
           defaultValue=''
@@ -49,6 +83,14 @@ const EditCalendar = () => {
           labelId='demo-simple-select-outlined-label'
           value={value}
           onChange={handleChange}
+          sx={{
+            '&:hover:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error) .MuiOutlinedInput-notchedOutline': {
+              borderColor: '#1273D1'
+            },
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              borderColor: '#1273D1'
+            }
+          }}
         >
           <MenuItem value={'matin'}>Matin</MenuItem>
           <MenuItem value={'après-midi'}>Après midi</MenuItem>

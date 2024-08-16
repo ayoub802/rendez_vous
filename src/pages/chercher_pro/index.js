@@ -97,8 +97,33 @@ const FilterBar = () => {
           }}
         >
           <FormControl variant='outlined' sx={{ minWidth: '100%' }}>
-            <InputLabel>Métier</InputLabel>
-            <Select value={metier} onChange={handleChange} label='Métier' name='metier'>
+            <InputLabel
+              sx={{
+                color: 'grey', // Default label color
+                '&.Mui-focused': {
+                  color: '#1273D1' // Label color on focus
+                },
+                '&.Mui-error': {
+                  color: 'red' // Label color on error
+                }
+              }}
+            >
+              Métier
+            </InputLabel>
+            <Select
+              value={metier}
+              onChange={handleChange}
+              label='Métier'
+              name='metier'
+              sx={{
+                '&:hover:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error) .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#1273D1'
+                },
+                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#1273D1'
+                }
+              }}
+            >
               <MenuItem value={10}>Option 1</MenuItem>
               <MenuItem value={20}>Option 2</MenuItem>
               <MenuItem value={30}>Option 3</MenuItem>
@@ -109,8 +134,33 @@ const FilterBar = () => {
       <Grid item xs={12} sm={6} md={4}>
         <Box>
           <FormControl variant='outlined' sx={{ minWidth: '100%' }}>
-            <InputLabel>Localistation</InputLabel>
-            <Select value={localisation} onChange={handleChange} label='Localistation' name='localisation'>
+            <InputLabel
+              sx={{
+                color: 'grey', // Default label color
+                '&.Mui-focused': {
+                  color: '#1273D1' // Label color on focus
+                },
+                '&.Mui-error': {
+                  color: 'red' // Label color on error
+                }
+              }}
+            >
+              Localistation
+            </InputLabel>
+            <Select
+              value={localisation}
+              onChange={handleChange}
+              label='Localistation'
+              name='localisation'
+              sx={{
+                '&:hover:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error) .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#1273D1'
+                },
+                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#1273D1'
+                }
+              }}
+            >
               <MenuItem value={10}>Option 1</MenuItem>
               <MenuItem value={20}>Option 2</MenuItem>
               <MenuItem value={30}>Option 3</MenuItem>
@@ -121,8 +171,33 @@ const FilterBar = () => {
       <Grid item xs={12} sm={6} md={4} sx={{ pl: 0, '&.MuiGrid-item': { px: 4, pb: 5 } }}>
         <Box>
           <FormControl variant='outlined' sx={{ minWidth: '100%' }}>
-            <InputLabel>Disponibilité</InputLabel>
-            <Select value={disponibilite} onChange={handleChange} label='Disponibilité' name='disponibilite'>
+            <InputLabel
+              sx={{
+                color: 'grey', // Default label color
+                '&.Mui-focused': {
+                  color: '#1273D1' // Label color on focus
+                },
+                '&.Mui-error': {
+                  color: 'red' // Label color on error
+                }
+              }}
+            >
+              Disponibilité
+            </InputLabel>
+            <Select
+              value={disponibilite}
+              onChange={handleChange}
+              label='Disponibilité'
+              name='disponibilite'
+              sx={{
+                '&:hover:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error) .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#1273D1'
+                },
+                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#1273D1'
+                }
+              }}
+            >
               <MenuItem value={10}>Option 1</MenuItem>
               <MenuItem value={20}>Option 2</MenuItem>
               <MenuItem value={30}>Option 3</MenuItem>

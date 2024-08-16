@@ -87,7 +87,36 @@ const ContactList = () => {
         inputRef={ref}
         {...props}
         label={label}
-        sx={{ width: '100%' }}
+        sx={{
+          width: '100%',
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: 'grey' // Default border color
+            },
+            '&:hover fieldset': {
+              borderColor: 'blue' // Border color on hover
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: '#1273D1' // Border color on focus
+            },
+            '& .MuiInputLabel-root': {
+              color: 'grey' // Default label color
+            },
+            '& .MuiInputLabel-root.Mui-focused': {
+              color: '#1273D1' // Label color on focus
+            }
+          }
+        }}
+        InputLabelProps={{
+          sx: {
+            '&.Mui-focused': {
+              color: '#1273D1' // Label color on focus
+            },
+            '&.Mui-focused.Mui-error': {
+              color: 'red' // Label color on focus
+            }
+          }
+        }}
         {...(readOnly && { inputProps: { readOnly: true } })}
         InputProps={{
           endAdornment: (
@@ -205,13 +234,35 @@ const ContactList = () => {
                 <Grid container spacing={6}>
                   <Grid item sm={6} xs={12}>
                     <FormControl fullWidth>
-                      <InputLabel id='role-select'>Métier</InputLabel>
+                      <InputLabel
+                        id='role-select'
+                        sx={{
+                          color: 'grey', // Default label color
+                          '&.Mui-focused': {
+                            color: '#1273D1' // Label color on focus
+                          },
+                          '&.Mui-error': {
+                            color: 'red' // Label color on error
+                          }
+                        }}
+                      >
+                        Métier
+                      </InputLabel>
                       <Select
                         fullWidth
                         id='select-role'
                         label='Métier'
                         labelId='role-select'
                         inputProps={{ placeholder: 'Métier' }}
+                        sx={{
+                          '&:hover:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error) .MuiOutlinedInput-notchedOutline':
+                            {
+                              borderColor: '#1273D1'
+                            },
+                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: '#1273D1'
+                          }
+                        }}
                       >
                         <MenuItem value='admin'>Admin</MenuItem>
                         <MenuItem value='author'>Author</MenuItem>

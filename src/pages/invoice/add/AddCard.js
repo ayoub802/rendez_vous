@@ -41,7 +41,27 @@ const CustomInput = forwardRef(({ ...props }, ref) => {
     <TextField
       size='small'
       inputRef={ref}
-      sx={{ width: { sm: '250px', xs: '170px' }, '& .MuiInputBase-input': { color: 'text.secondary' } }}
+      sx={{
+        width: { sm: '250px', xs: '170px' },
+        '& .MuiInputBase-input': { color: 'text.secondary' },
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            borderColor: 'grey' // Default border color
+          },
+          '&:hover fieldset': {
+            borderColor: 'blue' // Border color on hover
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: '#1273D1' // Border color on focus
+          },
+          '& .MuiInputLabel-root': {
+            color: 'grey' // Default label color
+          },
+          '& .MuiInputLabel-root.Mui-focused': {
+            color: '#1273D1' // Label color on focus
+          }
+        }
+      }}
       {...props}
     />
   )
@@ -240,7 +260,26 @@ const AddCard = props => {
                 <TextField
                   size='small'
                   value={invoiceNumber}
-                  sx={{ width: { sm: '250px', xs: '170px' } }}
+                  sx={{
+                    width: { sm: '250px', xs: '170px' },
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: 'grey' // Default border color
+                      },
+                      '&:hover fieldset': {
+                        borderColor: 'blue' // Border color on hover
+                      },
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#1273D1' // Border color on focus
+                      },
+                      '& .MuiInputLabel-root': {
+                        color: 'grey' // Default label color
+                      },
+                      '& .MuiInputLabel-root.Mui-focused': {
+                        color: '#1273D1' // Label color on focus
+                      }
+                    }
+                  }}
                   InputProps={{
                     disabled: true,
                     startAdornment: <InputAdornment position='start'>#</InputAdornment>
@@ -282,7 +321,21 @@ const AddCard = props => {
             <Typography variant='subtitle2' sx={{ mb: 3, color: 'text.primary' }}>
               Invoice To:
             </Typography>
-            <Select size='small' value={selected} onChange={handleInvoiceChange} sx={{ mb: 4, width: '200px' }}>
+            <Select
+              size='small'
+              value={selected}
+              onChange={handleInvoiceChange}
+              sx={{
+                mb: 4,
+                width: '200px',
+                '&:hover:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error) .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#1273D1'
+                },
+                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#1273D1'
+                }
+              }}
+            >
               <CustomSelectItem value='' onClick={handleAddNewCustomer}>
                 <Box sx={{ display: 'flex', alignItems: 'center', color: 'success.main', '& svg': { mr: 2 } }}>
                   <Icon icon='mdi:plus' fontSize={20} />
@@ -389,7 +442,20 @@ const AddCard = props => {
                         >
                           Item
                         </Typography>
-                        <Select fullWidth size='small' defaultValue='App Design'>
+                        <Select
+                          fullWidth
+                          size='small'
+                          defaultValue='App Design'
+                          sx={{
+                            '&:hover:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error) .MuiOutlinedInput-notchedOutline':
+                              {
+                                borderColor: '#1273D1'
+                              },
+                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                              borderColor: '#1273D1'
+                            }
+                          }}
+                        >
                           <MenuItem value='App Design'>App Design</MenuItem>
                           <MenuItem value='App Customization'>App Customization</MenuItem>
                           <MenuItem value='ABC Template'>ABC Template</MenuItem>
@@ -400,15 +466,54 @@ const AddCard = props => {
                           fullWidth
                           multiline
                           size='small'
-                          sx={{ mt: 3.5 }}
                           defaultValue='Customization & Bug Fixes'
+                          sx={{
+                            mt: 3.5,
+                            '& .MuiOutlinedInput-root': {
+                              '& fieldset': {
+                                borderColor: 'grey' // Default border color
+                              },
+                              '&:hover fieldset': {
+                                borderColor: 'blue' // Border color on hover
+                              },
+                              '&.Mui-focused fieldset': {
+                                borderColor: '#1273D1' // Border color on focus
+                              },
+                              '& .MuiInputLabel-root': {
+                                color: 'grey' // Default label color
+                              },
+                              '& .MuiInputLabel-root.Mui-focused': {
+                                color: '#1273D1' // Label color on focus
+                              }
+                            }
+                          }}
                         />
                       </Grid>
                       <Grid item lg={2} md={3} xs={12} sx={{ px: 4, my: { lg: 0, xs: 4 } }}>
                         <Typography
                           variant='subtitle2'
                           className='col-title'
-                          sx={{ mb: { md: 2, xs: 0 }, color: 'text.primary' }}
+                          sx={{
+                            mb: { md: 2, xs: 0 },
+                            color: 'text.primary',
+                            '& .MuiOutlinedInput-root': {
+                              '& fieldset': {
+                                borderColor: 'grey' // Default border color
+                              },
+                              '&:hover fieldset': {
+                                borderColor: 'blue' // Border color on hover
+                              },
+                              '&.Mui-focused fieldset': {
+                                borderColor: '#1273D1' // Border color on focus
+                              },
+                              '& .MuiInputLabel-root': {
+                                color: 'grey' // Default label color
+                              },
+                              '& .MuiInputLabel-root.Mui-focused': {
+                                color: '#1273D1' // Label color on focus
+                              }
+                            }
+                          }}
                         >
                           Cost
                         </Typography>
@@ -418,6 +523,25 @@ const AddCard = props => {
                           placeholder='24'
                           defaultValue='24'
                           InputProps={{ inputProps: { min: 0 } }}
+                          sx={{
+                            '& .MuiOutlinedInput-root': {
+                              '& fieldset': {
+                                borderColor: 'grey' // Default border color
+                              },
+                              '&:hover fieldset': {
+                                borderColor: 'blue' // Border color on hover
+                              },
+                              '&.Mui-focused fieldset': {
+                                borderColor: '#1273D1' // Border color on focus
+                              },
+                              '& .MuiInputLabel-root': {
+                                color: 'grey' // Default label color
+                              },
+                              '& .MuiInputLabel-root.Mui-focused': {
+                                color: '#1273D1' // Label color on focus
+                              }
+                            }
+                          }}
                         />
                         <Box sx={{ mt: 3.5 }}>
                           <Typography component='span' variant='body2' sx={{ lineHeight: 2 }}>
@@ -452,6 +576,25 @@ const AddCard = props => {
                           placeholder='1'
                           defaultValue='1'
                           InputProps={{ inputProps: { min: 0 } }}
+                          sx={{
+                            '& .MuiOutlinedInput-root': {
+                              '& fieldset': {
+                                borderColor: 'grey' // Default border color
+                              },
+                              '&:hover fieldset': {
+                                borderColor: 'blue' // Border color on hover
+                              },
+                              '&.Mui-focused fieldset': {
+                                borderColor: '#1273D1' // Border color on focus
+                              },
+                              '& .MuiInputLabel-root': {
+                                color: 'grey' // Default label color
+                              },
+                              '& .MuiInputLabel-root.Mui-focused': {
+                                color: '#1273D1' // Label color on focus
+                              }
+                            }
+                          }}
                         />
                       </Grid>
                       <Grid item lg={2} md={1} xs={12} sx={{ px: 4, my: { lg: 0 }, mt: 2 }}>
@@ -511,13 +654,53 @@ const AddCard = props => {
               <TextField
                 size='small'
                 defaultValue='Tommy Shelby'
-                sx={{ maxWidth: '150px', '& .MuiInputBase-input': { color: 'text.secondary' } }}
+                sx={{
+                  maxWidth: '150px',
+                  '& .MuiInputBase-input': { color: 'text.secondary' },
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'grey' // Default border color
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'blue' // Border color on hover
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#1273D1' // Border color on focus
+                    },
+                    '& .MuiInputLabel-root': {
+                      color: 'grey' // Default label color
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#1273D1' // Label color on focus
+                    }
+                  }
+                }}
               />
             </Box>
             <TextField
               size='small'
               placeholder='Thanks for your business'
-              sx={{ maxWidth: '300px', '& .MuiInputBase-input': { color: 'text.secondary' } }}
+              sx={{
+                maxWidth: '300px',
+                '& .MuiInputBase-input': { color: 'text.secondary' },
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'grey' // Default border color
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'blue' // Border color on hover
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#1273D1' // Border color on focus
+                  },
+                  '& .MuiInputLabel-root': {
+                    color: 'grey' // Default label color
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: '#1273D1' // Label color on focus
+                  }
+                }
+              }}
             />
           </Grid>
           <Grid item xs={12} sm={3} sx={{ mb: { sm: 0, xs: 4 }, order: { sm: 2, xs: 1 } }}>
@@ -561,7 +744,26 @@ const AddCard = props => {
           fullWidth
           multiline
           id='invoice-note'
-          sx={{ '& .MuiInputBase-input': { color: 'text.secondary' } }}
+          sx={{
+            '& .MuiInputBase-input': { color: 'text.secondary' },
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'grey' // Default border color
+              },
+              '&:hover fieldset': {
+                borderColor: 'blue' // Border color on hover
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#1273D1' // Border color on focus
+              },
+              '& .MuiInputLabel-root': {
+                color: 'grey' // Default label color
+              },
+              '& .MuiInputLabel-root.Mui-focused': {
+                color: '#1273D1' // Label color on focus
+              }
+            }
+          }}
           defaultValue='It was a pleasure working with you and your team. We hope you will keep us in mind for future freelance projects. Thank You!'
         />
       </CardContent>
